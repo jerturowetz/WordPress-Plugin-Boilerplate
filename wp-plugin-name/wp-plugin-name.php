@@ -16,8 +16,8 @@
  * Plugin URI:        http://example.com/wp-plugin-name-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            Your Name or Your Company
- * Author URI:        http://example.com/
+ * Author:            Jeremy Turowetz
+ * Author URI:        https://github.com/jerturowetz
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-plugin-name
@@ -35,40 +35,34 @@ if ( ! defined( 'WPINC' ) ) {
  * Define Constants
  */
 
-define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
+define( __NAMESPACE__ . '\\PLUGIN_NAME', 'wp-plugin-name' );
 
-define( NS . 'PLUGIN_NAME', 'wp-plugin-name' );
+define( __NAMESPACE__ . '\\PLUGIN_VERSION', '1.0.0' );
 
-define( NS . 'PLUGIN_VERSION', '1.0.0' );
+define( __NAMESPACE__ . '\\PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
-
-define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
-
-define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'wp-plugin-name' );
+define( __NAMESPACE__ . '\\PLUGIN_TEXT_DOMAIN', 'wp-plugin-name' );
 
 
 /**
  * Autoload Classes
  */
+require_once plugin_dir_path( __FILE__ ) . 'inc/libraries/autoloader.php';
 
-require_once( PLUGIN_NAME_DIR . 'inc/libraries/autoloader.php' );
 
 /**
  * Register Activation and Deactivation Hooks
  * This action is documented in inc/core/class-activator.php
  */
 
-register_activation_hook( __FILE__, array( NS . 'Inc\Core\Activator', 'activate' ) );
+register_activation_hook( __FILE__, array( __NAMESPACE__ . '\\Inc\Core\Activator', 'activate' ) );
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented inc/core/class-deactivator.php
  */
 
-register_deactivation_hook( __FILE__, array( NS . 'Inc\Core\Deactivator', 'deactivate' ) );
+register_deactivation_hook( __FILE__, array( __NAMESPACE__ . '\\Inc\Core\Deactivator', 'deactivate' ) );
 
 
 /**
@@ -114,13 +108,13 @@ class WP_Plugin_Name {
  * Also returns copy of the app object so 3rd party developers
  * can interact with the plugin's hooks contained within.
  **/
-function wp_plugin_name_init() {
-		return WP_Plugin_Name::init();
+function init() {
+	return WP_Plugin_Name::init();
 }
 
 $min_php = '5.6.0';
 
 // Check the minimum required PHP version and run the plugin.
 if ( version_compare( PHP_VERSION, $min_php, '>=' ) ) {
-		wp_plugin_name_init();
+	namespace\init();
 }
