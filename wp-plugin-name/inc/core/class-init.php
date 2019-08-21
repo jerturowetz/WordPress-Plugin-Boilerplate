@@ -1,6 +1,7 @@
 <?php
 
 namespace WP_Plugin_Name\Inc\Core;
+
 use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Inc\Admin as Admin;
 use WP_Plugin_Name\Inc\Frontend as Frontend;
@@ -56,10 +57,10 @@ class Init {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = NS\PLUGIN_NAME;
-		$this->version = NS\PLUGIN_VERSION;
-				$this->plugin_basename = NS\PLUGIN_BASENAME;
-				$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
+		$this->plugin_name        = NS\PLUGIN_NAME;
+		$this->version            = NS\PLUGIN_VERSION;
+		$this->plugin_basename    = NS\PLUGIN_BASENAME;
+		$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
 
 		$this->load_dependencies();
 		$this->set_locale();

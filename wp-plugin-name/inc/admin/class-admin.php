@@ -52,8 +52,8 @@ class Admin {
 	 */
 	public function __construct( $plugin_name, $version, $plugin_text_domain ) {
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->plugin_name        = $plugin_name;
+		$this->version            = $version;
 		$this->plugin_text_domain = $plugin_text_domain;
 
 	}
